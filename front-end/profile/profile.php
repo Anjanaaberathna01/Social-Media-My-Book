@@ -158,7 +158,15 @@ $friends = $user->get_friends($id);
         <div style=" background-color: #f0f0f0; text-align:center; color:#878787">
             <img src="/images/mountain.jpg" alt="cover photo" style="width: 100%;">
             <span style="font: size 12px;">
-                <img src="/images/profile-photo.jpg" id="Profile-Photo" alt="Profile Photo"><br>
+                <?php
+                $image = "";
+                if (file_exists("C:/xampp/htdocs/Social-Media-My-Book/" . $user_data['profile_image'])) {
+                    $image = "/" . $user_data['profile_image']; // for browser
+                } else {
+                    $image = "/images/profile-photo.jpg";
+                }
+                ?>
+                <img id="Profile-Photo" alt="Profile Photo" src="<?php echo $image ?>"><br>
                 <a href="change_profile_pic.php" style="text-decoration:none; color:#878787">Change Image</a>
             </span>
             <br>

@@ -1,32 +1,3 @@
-<?php
-session_start();
-
-include("c:/xampp/htdocs/Social-Media-My-Book/classes/connect.php");
-include("c:/xampp/htdocs/Social-Media-My-Book/classes/login.php");
-
-$result = "";
-$email = "";
-$password = ""; // It's good practice to clear password field
-
-if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == 'POST') {
-    $login = new Login();
-    // evaluate() does not return a value (void), so call it directly
-    $result = $login->evaluate($_POST);
-
-    // Try to read errors from the Login object if it exposes them; fall back to empty string
-    $result = isset($login->errors) ? $login->errors : "";
-
-    // On success (no errors) redirect to profile page using a proper Location header
-    if ($result == "") {
-        header("Location: ../profile/profile.php"); // Corrected relative path
-        die;
-    }
-
-    // Repopulate email (do not repopulate password for security)
-    $email = isset($_POST['email']) ?? "";
-    $password = "";
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
